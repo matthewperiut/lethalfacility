@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,corner=false": { "model": "lethalfacility:block/railing_side", "y": -90},
+    "facing=east,corner=false": { "model": "lethalfacility:block/railing_side", "y": 0 },
+    "facing=south,corner=false": { "model": "lethalfacility:block/railing_side", "y": 90 },
+    "facing=west,corner=false": { "model": "lethalfacility:block/railing_side", "y": 180 },
+    "facing=north,corner=true": { "model": "lethalfacility:block/railing_corner", "y": -90},
+    "facing=east,corner=true": { "model": "lethalfacility:block/railing_corner", "y": 0 },
+    "facing=south,corner=true": { "model": "lethalfacility:block/railing_corner", "y": 90 },
+    "facing=west,corner=true": { "model": "lethalfacility:block/railing_corner", "y": 180 }
+  }
+}
