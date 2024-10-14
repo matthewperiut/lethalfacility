@@ -13,12 +13,17 @@ public class LethalItems {
     @Entrypoint.Namespace
     private static Namespace NAMESPACE = null;
 
+    public static Item airhorn;
     public static Item key;
     public static Item locked_door;
     public static Item unlocked_door;
 
     @EventListener
     public static void registerItems(ItemRegistryEvent event) {
+
+        airhorn = new Airhorn(NAMESPACE.id("airhorn"))
+                .setTranslationKey(NAMESPACE.id("airhorn"))
+                .setMaxCount(1);
         key = new TemplateItem(NAMESPACE.id("key"))
                 .setTranslationKey(NAMESPACE.id("key"))
                 .setMaxCount(1);

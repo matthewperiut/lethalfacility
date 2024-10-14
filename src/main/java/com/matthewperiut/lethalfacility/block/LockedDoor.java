@@ -38,6 +38,11 @@ public class LockedDoor extends TemplateDoorBlock
         }
     }
 
+    private void unlock(World world, int x, int y, int z) {
+        if (world.getBlockId(x,y,z) == LethalBlocks.locked_door.id)
+            world.setBlockWithoutNotifyingNeighbors(x, y , z, LethalBlocks.unlocked_door.id, world.getBlockMeta(x, y, z));
+    }
+
     public boolean onUse(World world, int x, int y, int z, PlayerEntity player) {
         int meta = world.getBlockMeta(x, y, z);
         System.out.println(meta);
@@ -46,13 +51,21 @@ public class LockedDoor extends TemplateDoorBlock
             if (player.inventory.main[player.inventory.selectedSlot] != null && player.inventory.main[player.inventory.selectedSlot].itemId == LethalItems.key.id) {
                 if ((meta & 8) != 0) {
                     if (world.getBlockId(x, y - 1, z) == this.id) {
-                        world.setBlockWithoutNotifyingNeighbors(x, y - 1, z, LethalBlocks.unlocked_door.id, world.getBlockMeta(x, y - 1, z));
-                        world.setBlockWithoutNotifyingNeighbors(x, y, z, LethalBlocks.unlocked_door.id, world.getBlockMeta(x, y, z));
+                        for (int i = x - 1; i < x + 2; i++) {
+                            for (int j = z - 1; j < z + 2; j++) {
+                                unlock(world, i, y, j);
+                                unlock(world, i, y - 1, j);
+                            }
+                        }
                     }
                 } else {
-                    if (world.getBlockId(x, y + 1, z) == this.id) {
-                        world.setBlockWithoutNotifyingNeighbors(x, y + 1, z, LethalBlocks.unlocked_door.id, world.getBlockMeta(x, y + 1, z));
-                        world.setBlockWithoutNotifyingNeighbors(x, y, z, LethalBlocks.unlocked_door.id, world.getBlockMeta(x, y, z));
+                    if (world.getBlockId(x, y + 2, z) == this.id) {
+                        for (int i = x - 1; i < x + 2; i++) {
+                            for (int j = z - 1; j < z + 1; j++) {
+                                unlock(world, i, y, j);
+                                unlock(world, i, y + 1, j);
+                            }
+                        }
                     }
                 }
 
@@ -60,6 +73,8 @@ public class LockedDoor extends TemplateDoorBlock
                 if (player.inventory.main[player.inventory.selectedSlot].count <= 0) {
                     player.inventory.main[player.inventory.selectedSlot] = null;
                 }
+            } else {
+                player.sendMessage("This door is locked!");
             }
             return true;
         } else {
@@ -76,7 +91,7 @@ public class LockedDoor extends TemplateDoorBlock
 
                 world.setBlockMeta(x, y, z, meta ^ 4);
                 world.setBlocksDirty(x, y - 1, z, x, y, z);
-                world.worldEvent(player, 1003, x, y, z, 0);
+                world.worldEvent(player, 69003, x, y, z, 0);
                 return true;
             }
         }

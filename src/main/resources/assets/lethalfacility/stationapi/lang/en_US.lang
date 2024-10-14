@@ -1,5 +1,7 @@
+key.@.see=Debug Lethal Vision
 item.@.key.name=Key
 item.@.locked_door_item.name=Locked Door
 item.@.unlocked_door_item.name=Unlocked Door
 tile.@.platform.name=Platform
 tile.@.railing.name=Railing
+tile.@.wall.name=Wall

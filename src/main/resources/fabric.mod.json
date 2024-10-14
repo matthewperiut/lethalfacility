@@ -19,10 +19,14 @@
     ],
     "stationapi:event_bus": [
       "com.matthewperiut.lethalfacility.item.LethalItems",
-      "com.matthewperiut.lethalfacility.block.LethalBlocks"
+      "com.matthewperiut.lethalfacility.block.LethalBlocks",
+      "com.matthewperiut.lethalfacility.gen.dimension.LethalDimensions",
+      "com.matthewperiut.lethalfacility.gen.biome.LethalBiomes",
+      "com.matthewperiut.lethalfacility.blockentity.LethalBlockEntities"
     ],
     "stationapi:event_bus_client": [
-      "com.matthewperiut.lethalfacility.client.LethalTextures"
+      "com.matthewperiut.lethalfacility.client.LethalTextures",
+      "com.matthewperiut.lethalfacility.client.LethalKeybinding"
     ],
     "stationapi:event_bus_server": [
     ]

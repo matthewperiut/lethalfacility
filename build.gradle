@@ -89,6 +89,7 @@ dependencies {
 	modRuntimeOnly ("com.github.matthewperiut:stapi-fast-intro:17a7ed0dc4") { transitive false }
 
 	modImplementation("com.github.KydZombie:voxel-shapes:1.0.1") { transitive false }
+	modRuntimeOnly("maven.modrinth:bh-creative:${project.bhcreative_version}") { transitive false }
 }
 
 processResources {
