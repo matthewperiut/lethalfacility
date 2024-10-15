@@ -2,6 +2,7 @@ package com.matthewperiut.lethalfacility;
 
 import com.matthewperiut.lethalfacility.gen.roomcontrol.RoomMap;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.sound.SoundManager;
 
 public class LethalFacility implements ModInitializer
@@ -10,9 +11,12 @@ public class LethalFacility implements ModInitializer
 
     public static RoomMap roomMap = new RoomMap();
 
+    public static boolean mojangfix = false;
+
     @Override
     public void onInitialize() {
-        System.out.println("Hello World");
-
+        if (FabricLoader.getInstance().isModLoaded("mojangfixstationapi")) {
+            mojangfix = true;
+        }
     }
 }

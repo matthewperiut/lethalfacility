@@ -22,11 +22,13 @@
       "com.matthewperiut.lethalfacility.block.LethalBlocks",
       "com.matthewperiut.lethalfacility.gen.dimension.LethalDimensions",
       "com.matthewperiut.lethalfacility.gen.biome.LethalBiomes",
-      "com.matthewperiut.lethalfacility.blockentity.LethalBlockEntities"
+      "com.matthewperiut.lethalfacility.blockentity.LethalBlockEntities",
+      "com.matthewperiut.lethalfacility.entity.LethalEntities"
     ],
     "stationapi:event_bus_client": [
       "com.matthewperiut.lethalfacility.client.LethalTextures",
-      "com.matthewperiut.lethalfacility.client.LethalKeybinding"
+      "com.matthewperiut.lethalfacility.client.LethalKeybinding",
+      "com.matthewperiut.lethalfacility.client.entity.renderer.LethalEntityRenderers"
     ],
     "stationapi:event_bus_server": [
     ]
