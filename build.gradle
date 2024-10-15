@@ -70,20 +70,22 @@ dependencies {
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
+	implementation "blue.endless:jankson:1.2.1"
 
 	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
 
 	// Optional, but convenient mods for mod creators and users alike.
-	modImplementation("net.glasslauncher.mods:ModMenu:${project.modmenu_version}") {
-		transitive false
-	}
-	implementation "blue.endless:jankson:1.2.1"
 	modImplementation("net.glasslauncher.mods:GlassConfigAPI:${project.gcapi_version}") {
 		transitive false
 	}
-	modImplementation("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {
-		transitive false
-	}
+
+	// Runtime Convenience
+	modRuntimeOnly "com.github.GeyserMC:MCAuthLib:d9d773e5d50327c33898c65cd545a4f6ef3ba1b5" // needed for mojang fix
+	modRuntimeOnly ("maven.modrinth:mojangfix-stationapi-edition:${project.mojang_fix_stapi_version}") { transitive false }
+	modRuntimeOnly ("maven.modrinth:thirdpersonfix-babric:${project.thirdpersonfix_version}") { transitive false }
+	modRuntimeOnly ("maven.modrinth:modmenu-beta:${project.modmenu_version}") { transitive false }
+	modRuntimeOnly ("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {transitive false }
+	modRuntimeOnly ("com.github.matthewperiut:stapi-fast-intro:17a7ed0dc4") { transitive false }
 
 	modImplementation("com.github.matthewperiut:spc-babric:0.4.4") { transitive false }
 	modRuntimeOnly ("com.github.matthewperiut:stapi-fast-intro:17a7ed0dc4") { transitive false }
