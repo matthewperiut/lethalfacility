@@ -73,6 +73,8 @@ public class LethalChunkGenerator implements ChunkSource {
     public void decorate(ChunkSource source, int x, int z) {
         int realx = x*16;
         int realz = z*16;
+
+        // Generate 4 mini chunks within the major chunk
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 minichunk(realx + (i*8), realz + (j*8));
