@@ -79,6 +79,9 @@ dependencies {
 		transitive false
 	}
 
+	modImplementation("com.github.matthewperiut:retrocommands:0.5.2") { transitive false }
+	modImplementation("com.github.KydZombie:voxel-shapes:1.0.1") { transitive false }
+
 	// Runtime Convenience
 	modRuntimeOnly "com.github.GeyserMC:MCAuthLib:d9d773e5d50327c33898c65cd545a4f6ef3ba1b5" // needed for mojang fix
 	modRuntimeOnly ("maven.modrinth:mojangfix-stationapi-edition:${project.mojang_fix_stapi_version}") { transitive false }
@@ -86,12 +89,7 @@ dependencies {
 	modRuntimeOnly ("maven.modrinth:modmenu-beta:${project.modmenu_version}") { transitive false }
 	modRuntimeOnly ("net.glasslauncher:HowManyItems-Fabric-Unofficial:${project.howmanyitems_version}") {transitive false }
 	modRuntimeOnly ("com.github.matthewperiut:stapi-fast-intro:17a7ed0dc4") { transitive false }
-
-	modImplementation("com.github.matthewperiut:spc-babric:0.4.4") { transitive false }
-	modRuntimeOnly ("com.github.matthewperiut:stapi-fast-intro:17a7ed0dc4") { transitive false }
-
-	modImplementation("com.github.KydZombie:voxel-shapes:1.0.1") { transitive false }
-	modRuntimeOnly("maven.modrinth:bh-creative:${project.bhcreative_version}") { transitive false }
+	modRuntimeOnly ("maven.modrinth:bh-creative:${project.bhcreative_version}") { transitive false }
 }
 
 processResources {
