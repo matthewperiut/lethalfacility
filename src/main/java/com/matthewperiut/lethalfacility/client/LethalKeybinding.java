@@ -1,6 +1,5 @@
 package com.matthewperiut.lethalfacility.client;
 
-import com.matthewperiut.lethalfacility.LethalFacility;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.client.option.KeyBinding;
 import net.modificationstation.stationapi.api.client.event.keyboard.KeyStateChangedEvent;

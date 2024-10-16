@@ -2,17 +2,13 @@ package com.matthewperiut.lethalfacility.block;
 
 import io.github.kydzombie.voxelshapes.api.HasVoxelShape;
 import net.minecraft.block.Block;
-import net.minecraft.block.FenceBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.item.ItemPlacementContext;
 import net.modificationstation.stationapi.api.state.StateManager;
 import net.modificationstation.stationapi.api.state.property.BooleanProperty;
-import net.modificationstation.stationapi.api.state.property.DirectionProperty;
 import net.modificationstation.stationapi.api.state.property.Properties;
 import net.modificationstation.stationapi.api.state.property.Property;
 import net.modificationstation.stationapi.api.template.block.TemplateTranslucentBlock;

@@ -1,7 +1,6 @@
 package com.matthewperiut.lethalfacility.blockentity;
 
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.sound.SoundManager;
 
 public class FanBlockEntity extends BlockEntity {
     int count = 70;

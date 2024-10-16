@@ -1,7 +1,5 @@
 package com.matthewperiut.lethalfacility.gen.roomcontrol;
 
-import java.io.File;
-
 public class RoomMap {
 
     public RoomMap() {

@@ -1,6 +1,5 @@
 package com.matthewperiut.lethalfacility.client.entity.model;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import pl.telvarost.mojangfixstationapi.mixinterface.ModelPartAccessor;

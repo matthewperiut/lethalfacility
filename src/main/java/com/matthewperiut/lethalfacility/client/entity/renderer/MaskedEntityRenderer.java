@@ -2,7 +2,6 @@ package com.matthewperiut.lethalfacility.client.entity.renderer;
 
 import com.matthewperiut.lethalfacility.client.entity.model.MaskedEntityModel;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
-import net.minecraft.client.render.entity.UndeadEntityRenderer;
 import net.minecraft.entity.LivingEntity;
 
 public class MaskedEntityRenderer extends LivingEntityRenderer {

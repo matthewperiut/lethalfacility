@@ -3,7 +3,6 @@ package com.matthewperiut.lethalfacility.gen.feature;
 import com.matthewperiut.lethalfacility.block.LethalBlocks;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
-import net.modificationstation.stationapi.api.state.property.Properties;
 
 import static com.matthewperiut.lethalfacility.block.LethalBlocks.railing;
 import static com.matthewperiut.lethalfacility.block.Railing.CORNER;
