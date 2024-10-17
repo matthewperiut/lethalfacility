@@ -45,4 +45,27 @@ public class EntranceFileManager {
             }
         }
     }
+
+    public static void handleServer() {
+        String worldName = "world";
+        File file = new File("server.properties");
+        if (file.exists()) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(file.getPath()));
+
+                String line;
+                String search = "level-name=";
+                while ((line = reader.readLine()) != null) {
+                    if (line.contains(search)) {
+                        worldName = line.substring(search.length());
+                    }
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        EntranceFileManager.handle(".", worldName);
+    }
 }

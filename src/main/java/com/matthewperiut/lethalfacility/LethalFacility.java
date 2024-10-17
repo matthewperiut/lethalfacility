@@ -1,10 +1,14 @@
 package com.matthewperiut.lethalfacility;
 
+import com.matthewperiut.lethalfacility.gen.control.EntranceFileManager;
 import com.matthewperiut.lethalfacility.gen.control.RoomMap;
 import com.matthewperiut.lethalfacility.util.command.StructureCommands;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.modificationstation.stationapi.api.util.math.Vec3d;
+
+import java.io.*;
 
 public class LethalFacility implements ModInitializer
 {
@@ -25,6 +29,9 @@ public class LethalFacility implements ModInitializer
         }
         if (FabricLoader.getInstance().isModLoaded("retrocommands")) {
             StructureCommands.init();
+        }
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+            EntranceFileManager.handleServer();
         }
     }
 }
