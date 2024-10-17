@@ -13,6 +13,7 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.math.Direction;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -21,6 +22,12 @@ public class StructureStorage {
     private BlockPos[] corners;
     private BlockPos[] raw_corners = new BlockPos[2];
 
+    public void setPos1(double x, double y, double z) {
+        raw_corners[0] = new BlockPos((int) Math.floor(x), (int) Math.floor(y), (int) Math.floor(z));
+    }
+    public void setPos2(double x, double y, double z) {
+        raw_corners[1] = new BlockPos((int) Math.floor(x), (int) Math.floor(y), (int) Math.floor(z));
+    }
     public void setPos1(BlockPos pos) {
         raw_corners[0] = pos;
     }
@@ -105,9 +112,6 @@ public class StructureStorage {
             return "An error occurred while writing to the file.";
         }
 
-        world.setBlockStateWithNotify(corners[0], Block.DIRT.getDefaultState());
-        world.setBlockStateWithNotify(corners[1], Block.STONE.getDefaultState());
-
         return "Copied Successfully as " + name;
     }
     public String paste(World world, int x, int y, int z, String name) {
@@ -121,25 +125,48 @@ public class StructureStorage {
     }
 
     private String paste(World world, int x, int y, int z, String name, boolean notify) {
-        y = y-1;
+        y = y - 1;
         String path = StructureFolder.getPath();
         new File(path).mkdirs();
-        String filePath;
-        if (name.contains("/")) {
-            filePath = name + ".ss";
-            String[] parts = name.split("/");
-            name = parts[parts.length-1];
-        } else {
-            filePath = path + "/" + name + ".ss";
-        }
 
-        HashMap<Integer, Block> blocks = new HashMap<>();
-        HashMap<BlockPos, Integer> postNotify = new HashMap<>();
-        boolean getIds = true;
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String filePath;
+        BufferedReader reader = null;
+
+        try {
+            // Check if the name contains a modid (indicated by the presence of ":")
+            if (name.contains(":")) {
+                // Modid-prefixed, treat it as an internal resource
+                String[] parts = name.split(":");
+                String modid = parts[0];
+                String internalName = parts[1];
+
+                // Create the internal resource path
+                String resourcePath = "/assets/" + modid + "/structures/" + internalName + ".ss";
+
+                // Attempt to open the internal resource file
+                InputStream stream = this.getClass().getResourceAsStream(resourcePath);
+                if (stream == null) {
+                    return "Error: Internal resource \"" + resourcePath + "\" not found";
+                }
+
+                // Initialize the reader for internal resource
+                reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+            } else {
+                // Non-prefixed, treat it as a local file
+                filePath = path + "/" + name + ".ss";
+
+                // Initialize the reader for local file
+                reader = new BufferedReader(new FileReader(filePath));
+            }
+
+            // Process the file (whether internal or local)
+            HashMap<Integer, Block> blocks = new HashMap<>();
+            HashMap<BlockPos, Integer> postNotify = new HashMap<>();
+            boolean getIds = true;
+
             String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
+            while ((line = reader.readLine()) != null) {
+                // Check for ids/data sections and process accordingly
                 if (line.equals("ids:")) {
                     getIds = true;
                     continue;
@@ -148,7 +175,9 @@ public class StructureStorage {
                     getIds = false;
                     continue;
                 }
+
                 if (getIds) {
+                    // Process block ids
                     String[] entry = line.split("=");
                     String pseudoId = entry[0];
                     String realId = entry[1];
@@ -160,6 +189,7 @@ public class StructureStorage {
                         blocks.put(a, blockContainer.get());
                     }
                 } else {
+                    // Process block data
                     String[] data = line.split(":");
                     if (data.length > 0) {
                         String[] pos = data[0].split(",");
@@ -181,7 +211,7 @@ public class StructureStorage {
 
                             BlockState blockState;
                             if (data.length > 2) {
-                                // optional parameter for BlockState
+                                // Optional parameter for BlockState
                                 blockState = parseBlockStateInfo(block, data[2]);
                             } else {
                                 blockState = block.getDefaultState();
@@ -199,27 +229,36 @@ public class StructureStorage {
                     }
                 }
             }
+
+            // Post notify for block updates
+            if (notify) {
+                postNotify.forEach((pos, id) -> {
+                    ((WorldAccessor)world).invokeBlockUpdate(pos.x, pos.y, pos.z, id);
+                });
+            }
+
+            return "Pasted Successfully";
+
         } catch (IOException e) {
             e.printStackTrace();
-            return "Error: File \"" + name + "\" not found";
+            return "Error: Unable to read the file \"" + name + "\"";
         } catch (NumberFormatException e) {
-            return "Error: File \"" + name + "\" contents incorrect";
+            return "Error: Incorrect format in file \"" + name + "\"";
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error: Unknown Error has occurred parsing " + name;
+            return "Error: Unknown error occurred while parsing \"" + name + "\"";
+        } finally {
+            // Ensure that the reader is properly closed
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
-        // You may be asking why post notify?
-        // Doors and other things may break if notifying before surrounding are updated.
-        // Therefore, we must notify after all the changes.
-        if (notify) {
-            postNotify.forEach((pos, id) -> {
-                ((WorldAccessor)world).invokeBlockUpdate(pos.x, pos.y, pos.z, id);
-            });
-        }
-
-        return "Pasted Successfully";
     }
+
 
     private static Direction getHorizontalDirectionValue(String s) {
         return switch (s) {

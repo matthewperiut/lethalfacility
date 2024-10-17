@@ -3,6 +3,7 @@
     "lethalfacility:wall",
     "lethalfacility:unlocked_door",
     "lethalfacility:platform",
-    "lethalfacility:railing"
+    "lethalfacility:railing",
+    "lethalfacility:hard_metal_ground"
   ]
 }

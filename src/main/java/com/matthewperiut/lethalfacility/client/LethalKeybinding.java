@@ -1,7 +1,11 @@
 package com.matthewperiut.lethalfacility.client;
 
+import com.matthewperiut.lethalfacility.util.StructureStorage;
+import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.entity.player.PlayerEntity;
 import net.modificationstation.stationapi.api.client.event.keyboard.KeyStateChangedEvent;
 import net.modificationstation.stationapi.api.client.event.option.KeyBindingRegisterEvent;
 import org.lwjgl.input.Keyboard;
@@ -29,6 +33,9 @@ public class LethalKeybinding {
                 // Perform different actions based on if we are ingame or in gui
                 if (event.environment == KeyStateChangedEvent.Environment.IN_GAME) {
                     see_override = !see_override;
+
+                    PlayerEntity p = ((Minecraft) FabricLoader.getInstance().getGameInstance()).player;
+                    (new StructureStorage()).paste(p.world, (int) Math.floor(p.x), (int) Math.floor(p.y), (int) Math.floor(p.z), "lethalfacility:platform2x2");
                 }
             }
         }

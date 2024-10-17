@@ -1,4 +1,4 @@
-package com.matthewperiut.lethalfacility.gen.roomcontrol;
+package com.matthewperiut.lethalfacility.gen.control;
 
 public enum RoomEnum {
     NULL_ROOM("null_room"),

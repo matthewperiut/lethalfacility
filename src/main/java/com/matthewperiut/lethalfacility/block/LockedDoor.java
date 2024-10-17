@@ -45,7 +45,6 @@ public class LockedDoor extends TemplateDoorBlock
 
     public boolean onUse(World world, int x, int y, int z, PlayerEntity player) {
         int meta = world.getBlockMeta(x, y, z);
-        System.out.println(meta);
 
         if (needsKey) {
             if (player.inventory.main[player.inventory.selectedSlot] != null && player.inventory.main[player.inventory.selectedSlot].itemId == LethalItems.key.id) {

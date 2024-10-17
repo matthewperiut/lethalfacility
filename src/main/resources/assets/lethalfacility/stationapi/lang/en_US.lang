@@ -5,3 +5,7 @@ item.@.unlocked_door_item.name=Unlocked Door
 tile.@.platform.name=Platform
 tile.@.railing.name=Railing
 tile.@.wall.name=Wall
+tile.@.hard_metal_ground.name=Hard Metal Ground
+minecraft\:overworld=Overworld
+gui.lethalfacility\:enter=Entering the Facility
+gui.lethalfacility\:exit=Exiting the Facility

@@ -1,4 +1,4 @@
-package com.matthewperiut.lethalfacility.gen.roomcontrol;
+package com.matthewperiut.lethalfacility.gen.control;
 
 public class RoomMap {
 
@@ -7,8 +7,6 @@ public class RoomMap {
     }
 
     public void createLayer(String string) {
-
-        System.out.println(string);
 
 //        File structuresDir = new File(, "structures");
 //
