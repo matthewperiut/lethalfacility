@@ -18,6 +18,7 @@ public class LethalBlocks {
     public static Block invisible_light;
     public static Block wall;
     public static Block platform;
+    public static Block double_dimension_door;
     public static Block dimension_door;
     public static Block locked_door;
     public static Block unlocked_door;
@@ -31,6 +32,7 @@ public class LethalBlocks {
         wall = new TemplateBlock(NAMESPACE.id("wall"), Material.METAL).setTranslationKey(NAMESPACE.id("wall")).setHardness(1);
         platform = new TemplateTranslucentBlock(NAMESPACE.id("platform"), 0, Material.METAL, false)
                 .setTranslationKey(NAMESPACE.id("platform")).setHardness(1);
+        double_dimension_door = new DoubleDimensionDoor(NAMESPACE.id("double_dimension_door")).setTranslationKey(NAMESPACE.id("double_dimension_door"));
         dimension_door = new DimensionDoor(NAMESPACE.id("dimension_door")).setTranslationKey(NAMESPACE.id("dimension_door"));
         locked_door = new LockedDoor(NAMESPACE.id("locked_door"), Material.METAL, true).setTranslationKey(NAMESPACE.id("locked_door"));
         unlocked_door = new LockedDoor(NAMESPACE.id("unlocked_door"), Material.METAL, false).setTranslationKey(NAMESPACE.id("unlocked_door"));

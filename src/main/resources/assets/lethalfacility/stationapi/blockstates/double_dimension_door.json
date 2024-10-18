@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "location=0": { "model": "lethalfacility:block/double_door/bottom_left" },
+    "location=1": { "model": "lethalfacility:block/double_door/bottom_middle" },
+    "location=2": { "model": "lethalfacility:block/double_door/bottom_right" },
+    "location=3": { "model": "lethalfacility:block/double_door/top_left" },
+    "location=4": { "model": "lethalfacility:block/double_door/top_middle" },
+    "location=5": { "model": "lethalfacility:block/double_door/top_right" }
+  }
+}

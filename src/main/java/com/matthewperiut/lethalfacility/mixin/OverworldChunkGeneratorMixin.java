@@ -46,9 +46,6 @@ public class OverworldChunkGeneratorMixin {
                         if (isSolidGround(world, x, baseY, z)) {
                             LethalFacility.worldLethalEntranceExists = true;
                             (new StructureStorage()).pasteWithoutNotify(world, x-4, baseY-4, z-4, "lethalfacility:entrance");
-                            for (int i = 0; i < 100; i++) {
-                                world.setBlockWithoutNotifyingNeighbors(x-4, baseY+i, z-4, Block.STONE.id);
-                            }
                             LethalFacility.worldLethalEntrancePos = new Vec3d((x-1), (baseY-2), (z-1.5));
                             try (FileWriter writer = new FileWriter(LethalFacility.worldLethalEntranceFilePath)) {
                                 writer.write("true\n");
